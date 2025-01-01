@@ -1,12 +1,14 @@
 import React, {useEffect,useState} from 'react'
 import axios from 'axios';
+import { useCategory } from './Context/Category';
 
 function Menu() {
   const apikey = import.meta.env.VITE_BOOK;
+  const {category}=useCategory()
   const [data, setdata] = useState([])
   const getmainbooks= async()=>{
     try {
-      const res=await axios.get(`https://www.googleapis.com/books/v1/volumes?q=book&maxResults=40&startIndex=0&key=${apikey}`)
+      const res=await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${category}&maxResults=40&startIndex=0&key=${apikey}`)
       setdata(res.data.items)
       console.log(res.data.items  )
        } catch (error) {
@@ -16,7 +18,7 @@ function Menu() {
   
   useEffect(() => {
     getmainbooks()
-  }, [])
+  }, [category])
   
 
   return (
