@@ -22,22 +22,26 @@ function Menu() {
   
 
   return (
-    <main className='min-h-screen pt-5 px-6'>
-      <div className='grid grid-cols-7 gap-6'>
+    <main className='min-h-screen pt-5 px-6 pb-5'>
+      <div className='grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-5 lg:grid-cols-7'>
         {data.map((item)=>{
           let thumbnail=item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail
           const randomprice = Math.floor(Math.random() * (700 - 300 + 1)) + 300;
+          const rating = (Math.random() * (5 - 3) + 3).toFixed(1);
+
           if (thumbnail!=undefined){
             return(
-              <div key={item.id} className='border-2 h-60 flex flex-col items-center'>
-              <div className='h-[185.71px] w-[130px] '>
+              <div key={item.id} className='border-2 flex flex-col items-center justify-center h-max py-2'>
+              <div className=' h-[160.71px] w-[100px] md:w-[106px] md:h-[170.71px] lg:h-[176.71px] lg:w-[120px] '>
                 <img src={thumbnail} alt="" className=' w-full h-full object-fill' />
               </div>
               <div className='flex flex-col items-center w-full pt-2'>
                 <h3 className=' w-11/12 text-sm truncate'>{item.volumeInfo.title}</h3>
                 <div className='flex justify-between w-11/12 text-xs'>
-                  <div>{randomprice}</div>
-                  <div>Rate</div>
+                  <div>{randomprice} Rs</div>
+                  <div className='flex gap-1'>{rating}
+                    <img src="/images/star.png" alt="" className='h-4 w-4' />
+                  </div>
                 </div>
               </div>
             </div>
