@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily:{
         Playfair:["Playfair Display"],
-        Lato:["Lato"]
+        Lato:["Roboto"]
       },
       screens:{
         'grid3': '500px',

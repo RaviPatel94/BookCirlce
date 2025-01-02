@@ -15,7 +15,7 @@ function Navbar() {
   }
 
   return (
-    <nav className='w-screen fixed pt-2 px-2 z-40 bg-black bg-opacity-50 text-white'>
+    <nav className='w-screen top-0 fixed pt-2 px-2 z-40 bg-black bg-opacity-50 text-white'>
     <div className='flex justify-between items-center pb-1'>
         <div className='flex gap-7'>
           <Link to="">
@@ -26,12 +26,12 @@ function Navbar() {
         </div>
         <div className='flex gap-5'>
         <img src="/images/search.png" alt="Seach icon" className='h-6 sm:hidden cursor-pointer ' onClick={()=>setallowsearch((prev=>!prev))} />
-          <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' />
+          <Link to="cart"> <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' /></Link>
           <Link to="login"><img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' /></Link>
         </div>
     </div>
     <div>
-      <ul className='flex overflow-x-auto gap-4  no-scrollbar pb-2'>
+      <ul className='flex overflow-x-auto gap-4  no-scrollbar pb-2 font-light'>
           {
             categories.map((category, index)=>(
               <li key={index} className='h-max whitespace-nowrap hover:underline cursor-pointer'
