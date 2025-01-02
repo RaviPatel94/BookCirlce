@@ -5,6 +5,8 @@ function Navbar() {
   let categories = ["Trending", "Fiction", "Non-fiction", "Academic", "Comics", "Novels", "Biographies", "Children's Books", "Science Fiction", "Fantasy", "Self-help", "Mystery", "Romance", "Thriller", "Poetry", "Graphic Novels", "Historical Fiction", "Cookbooks"];
   const {setcategory}=useCategory()
   const [search, setsearch] = useState(" ")
+  const [allowsearch, setallowsearch] = useState(false)
+  console.log(allowsearch)
 
   const searchbook=(evt)=>{
     if (evt.key==="Enter"){
@@ -17,13 +19,14 @@ function Navbar() {
     <div className='flex justify-between items-center pb-1'>
         <div className='flex gap-7'>
           <h1 className='text-2xl cursor-pointer font-Playfair'>BookCircle</h1>
-          <input type="text" placeholder='Search' className='border border-black w-96 bg-zinc-200 px-2 py-1 placeholder:text-black text-black placeholder:text-lg outline-none'
+          <input type="text" placeholder='Search' className='hidden sm:block border border-black w-96 bg-zinc-200 px-2 py-1 placeholder:text-black text-black placeholder:text-lg outline-none'
           onChange={(e)=>setsearch(e.target.value)}
           onKeyDown={searchbook} />
         </div>
         <div className='flex gap-5'>
-          <img src="/images/cart.png" alt="" className='h-8 cursor-pointer ' />
-          <img src="/images/pfp.jpg" alt="" className='h-8 cursor-pointer rounded-full' />
+        <img src="/images/search.png" alt="" className='h-6 sm:hidden cursor-pointer ' onClick={()=>setallowsearch((prev=>!prev))} />
+          <img src="/images/cart.png" alt="" className='h-6 sm:h-8 cursor-pointer ' />
+          <img src="/images/pfp.jpg" alt="" className='h-6 sm:h-8 cursor-pointer rounded-full' />
         </div>
     </div>
     <div>
@@ -38,6 +41,9 @@ function Navbar() {
           }
       </ul>
     </div>
+    <input type="text" placeholder='Search' className={`sm:hidden border border-black w-11/12 ml-3 bg-zinc-200 px-2 py-1 placeholder:text-black text-black placeholder:text-lg outline-none ${allowsearch?"block":"hidden"}`}
+          onChange={(e)=>setsearch(e.target.value)}
+          onKeyDown={searchbook} />
     </nav>
   )
 }

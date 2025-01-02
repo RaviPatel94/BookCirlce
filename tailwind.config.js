@@ -9,7 +9,11 @@ export default {
       fontFamily:{
         Playfair:["Playfair Display"],
         Lato:["Lato"]
-      }
+      },
+      screens:{
+        'grid3': '500px',
+        'grid2': '360px',
+      },
     },
   },
   plugins: [],

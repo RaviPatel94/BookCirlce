@@ -22,8 +22,8 @@ function Menu() {
   
 
   return (
-    <main className='min-h-screen pt-5 px-6 pb-5'>
-      <div className='grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-5 lg:grid-cols-7'>
+    <main className='min-h-screen pt-5 px-3 grid3:px-6 pb-5'>
+      <div className='grid grid-cols-2 grid2:grid-cols-3 grid3:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 grid3:gap-5 lg:grid-cols-7'>
         {data.map((item)=>{
           let thumbnail=item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail
           const randomprice = Math.floor(Math.random() * (700 - 300 + 1)) + 300;
