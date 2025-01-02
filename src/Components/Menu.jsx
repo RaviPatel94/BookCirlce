@@ -22,7 +22,7 @@ function Menu() {
   
 
   return (
-    <main className='min-h-screen pt-5 px-3 grid3:px-6 pb-5'>
+    <main id='menu' className='min-h-screen pt-5 px-3 grid3:px-6 pb-5'>
       <div className='grid grid-cols-2 grid2:grid-cols-3 grid3:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3 grid3:gap-5 lg:grid-cols-7'>
         {data.map((item)=>{
           let thumbnail=item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail
@@ -33,7 +33,7 @@ function Menu() {
             return(
               <div key={item.id} className='border-2 flex flex-col items-center justify-center h-max py-2'>
               <div className=' h-[160.71px] w-[100px] md:w-[106px] md:h-[170.71px] lg:h-[176.71px] lg:w-[120px] '>
-                <img src={thumbnail} alt="" className=' w-full h-full object-fill' />
+                <img src={thumbnail} alt="Book Cover" className=' w-full h-full object-fill' />
               </div>
               <div className='flex flex-col items-center w-full pt-2'>
                 <h3 className=' w-11/12 text-sm truncate'>{item.volumeInfo.title}</h3>
