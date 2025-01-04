@@ -8,8 +8,6 @@ import Hero from './Components/Hero'
 import Menu from './Components/Menu'
 import Cart from './Components/Cart.jsx'
 import Login from './Components/Login.jsx'
-import { WebchatProvider } from '@botpress/webchat'
-import Chatbot from './Components/Chatbot.jsx'
 
 
 const router = createBrowserRouter([{
@@ -20,7 +18,6 @@ const router = createBrowserRouter([{
       path:"",
       element:(
       <>
-        <Chatbot/>
         <Hero/>
         <Menu/>
       </>
@@ -39,10 +36,8 @@ const router = createBrowserRouter([{
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WebchatProvider>
     <Categoryprovider>
     <RouterProvider router={router}/>
     </Categoryprovider>
-    </WebchatProvider>
   </StrictMode>
 )
