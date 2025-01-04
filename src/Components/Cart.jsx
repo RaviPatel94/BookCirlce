@@ -63,14 +63,14 @@ function Cart() {
           <hr />
           <button className='mt-3 mb-3 text-xl'>Apply coupons</button>
           <hr />
-          <p>Other charges</p>
-          <tr>
-            <td>Shipping charges</td>
-            <td>0rs</td>
+          <p className='text-base pt-3'>Other charges</p>
+          <tr className='pb-3'>
+            <td className='text-lg font-light'>Shipping charges</td>
+            <td className='text-lg font-light'>0rs</td>
           </tr>
           <hr />
           <tr className='w-full'>
-            <td>Final Price</td>
+            <td className='pt-3'>Final Price</td>
             <td className='text-left'>240rs</td>
           </tr>
         </div>
