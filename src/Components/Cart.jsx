@@ -49,7 +49,7 @@ function Cart() {
           <table className='mt-3 text-lg mb-3 font-light'>
             <tr>
               <td>Total Mrp</td>
-              <td>250rs</td>
+              <td className='text-left'>250rs</td>
             </tr>
             <tr>
               <td>Discount</td>
@@ -69,7 +69,7 @@ function Cart() {
             <td className='text-lg font-light'>0rs</td>
           </tr>
           <hr />
-          <tr className='w-full'>
+          <tr className='w-full '>
             <td className='pt-3'>Final Price</td>
             <td className='text-left'>240rs</td>
           </tr>
