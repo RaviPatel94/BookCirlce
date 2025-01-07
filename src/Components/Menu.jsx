@@ -52,7 +52,7 @@ const Menu = () => {
 
   useEffect(() => {
     getMainBooks();
-    setIndexCount(40); // Reset index count when category changes
+    setIndexCount(40);
   }, [category]);
 
   if (error) {

@@ -26,8 +26,8 @@ function Navbar() {
         </div>
         <div className='flex gap-5'>
         <img src="/images/search.png" alt="Seach icon" className='h-6 sm:hidden cursor-pointer ' onClick={()=>setallowsearch((prev=>!prev))} />
-          <Link to="cart"> <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' /></Link>
-          <Link to="login"><img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' /></Link>
+          <NavLink to="/cart"> <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' /></NavLink>
+          <NavLink to="/login"><img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' /></NavLink>
         </div>
     </div>
     <div>

@@ -9,7 +9,7 @@ function Cart() {
   }
 
   return (
-    <div className='mt-20 w-screen px-5 flex justify-between min-h-screen'>
+    <div className='mt-20 w-screen px-5 flex flex-col sm:flex-row justify-between min-h-screen'>
       <div className="w-[65%]">
         <table className="table-auto w-full">
           <thead className='font-Playfair'>
