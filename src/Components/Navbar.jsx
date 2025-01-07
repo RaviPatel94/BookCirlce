@@ -18,7 +18,7 @@ function Navbar() {
     <nav className='w-screen top-0 fixed pt-2 px-2 z-40 bg-black bg-opacity-50 text-white'>
     <div className='flex justify-between items-center pb-1'>
         <div className='flex gap-7'>
-          <Link to="">
+          <Link to="/">
           <h1 className='text-2xl cursor-pointer font-Playfair'>BookCircle</h1></Link>
           <input type="text" placeholder='Search' className='hidden sm:block border border-black w-96 bg-zinc-200 px-2 py-1 placeholder:text-black text-black placeholder:text-lg outline-none'
           onChange={(e)=>setsearch(e.target.value)}
