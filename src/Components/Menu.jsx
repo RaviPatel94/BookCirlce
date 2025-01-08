@@ -75,7 +75,7 @@ const Menu = () => {
             return (
               <div
                 key={item.id}
-                className="border-2 flex flex-col items-center justify-center h-max py-2"
+                className="border-2 flex flex-col items-center justify-center h-max py-2 cursor-pointer hover:bg-gray-200"
               >
                 <div className="h-[160.71px] w-[100px] md:w-[106px] md:h-[170.71px] lg:h-[176.71px] lg:w-[120px]">
                   <img

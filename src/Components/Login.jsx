@@ -7,7 +7,10 @@ function Login() {
     setsignin(prev=>!prev)
   }
   return (
-    <main className='flex flex-col items-center justify-center h-screen w-screen gap-9 z-[1000] sm:flex-row'>
+    <main className='flex flex-col items-center justify-center min-h-screen w-screen gap-9 z-[1000] sm:flex-row py-20'>
+      <div className='absolute px-3 py-1 bg-gray-300 right-3 top-3 border-l-4 border-black'>
+      !Working on authentication system
+      </div>
         <div className='bg-gray-300 h-96 w-80 rounded-xl flex flex-col items-center justify-center'>
           <h1 className='text-3xl font-Playfair pb-2'>BookCircle</h1>
           <h2 className='w-44 text-center text-sm pb-7'>
@@ -31,7 +34,7 @@ function Login() {
             <div className='w-full flex justify-center'>
             <Link to="/">
             <button className='mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white'>Submit</button></Link></div>
-            <div className='flex justify-between w-full'>
+            <div className='flex justify-between w-full text-sm'>
               <div>Remember me: <input type="checkbox" className='cursor-pointer' /></div>
               <div className='text-blue-600 underline cursor-pointer'>Forgot Password</div>
             </div>

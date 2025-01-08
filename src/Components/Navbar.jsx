@@ -6,7 +6,7 @@ function Navbar() {
   const {setcategory}=useCategory()
   const [search, setsearch] = useState(" ")
   const [allowsearch, setallowsearch] = useState(false)
-  console.log(allowsearch)
+  const [navopt, setnavopt] = useState(false)
 
   const searchbook=(evt)=>{
     if (evt.key==="Enter"){
@@ -27,7 +27,16 @@ function Navbar() {
         <div className='flex gap-5'>
         <img src="/images/search.png" alt="Seach icon" className='h-6 sm:hidden cursor-pointer ' onClick={()=>setallowsearch((prev=>!prev))} />
           <NavLink to="/cart"> <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' /></NavLink>
-          <NavLink to="/login"><img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' /></NavLink>
+          <div>
+          <img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' onClick={()=>setnavopt(prev=>!prev)} />
+          <div className={`absolute bg-white right-0 top-[38px] rounded-md text-black py-1 px-2 text-lg ${navopt?"":"hidden"}`} >
+            <ul >
+            <NavLink to="/login"><li className='border-b border-gray-500 py-1'>Login</li></NavLink>
+              <li className='border-b border-gray-500 py-1'>Profile</li>
+              <li className='py-1'>Signout</li>
+            </ul>
+          </div>
+          </div>
         </div>
     </div>
     <div>

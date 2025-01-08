@@ -9,7 +9,7 @@ function Cart() {
   }
 
   return (
-    <div className='mt-20 w-screen px-5 flex flex-col md:flex-row md:justify-between min-h-screen gap-6'>
+    <div className='pt-20 w-screen px-5 flex flex-col md:flex-row md:justify-between min-h-screen gap-6'>
       <div className="md:w-[65%]">
         <table className="table-auto w-full h-max">
           <thead className='font-Playfair'>
@@ -34,7 +34,7 @@ function Cart() {
               </td>
               <td className="px-1 sm:px-4 py-2 text-sm grid3:text-lg">250rs</td>
               <td className="px-1 sm:px-4 py-2  ">
-                <input type="number" name="" id="" placeholder='1' className=' w-7 outline-none text-sm grid3:text-lg px-2 py-2 hover:bg-gray-200' />
+                <input type="number" name="" id="" defaultValue={1} className=' text-black placeholder:text-black w-7 outline-none text-sm grid3:text-lg px-2 py-2 hover:bg-gray-200' />
               </td>
               <td className=" px-1 sm:px-4 py-2 text-sm grid3:text-lg">{getDateFiveDaysAhead()}</td>
             </tr>
@@ -66,7 +66,7 @@ function Cart() {
           <p className='text-sm pt-3'>Other charges</p>
           <div className='font-light flex flex-col py-2 gap-1'> 
           <label htmlFor="address">Address :</label>
-          <input type="text" name='address' className='bg-gray-200 px-1 py-2 rounded-md text-sm' defaultValue={"401/B XYZ building, abc city, 123456 , India"} /></div>
+          <input type="text" name='address' className= 'outline-none bg-gray-200 px-1 py-2 rounded-md text-sm' defaultValue={"401/B XYZ building, abc city, 123456 , India"} /></div>
           <table className='w-full mb-3'>
           <tbody>
           <tr className='w-full'>
@@ -81,6 +81,11 @@ function Cart() {
           <tr className='w-full text-lg font-light'>
             <td className='pt-3 '>Final Price: </td>
             <td className='text-end'>255rs</td>
+          </tr>
+          <tr>
+            <td >
+              <div className='mt-3 px-2 py-1 rounded-lg border border-black hover:bg-black hover:text-white cursor-pointer '> Proceed to payment</div>
+            </td>
           </tr>
           </tbody>
           </table>
