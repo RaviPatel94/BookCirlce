@@ -9,42 +9,40 @@ function Cart() {
   }
 
   return (
-    <div className='mt-20 w-screen px-5 flex flex-col sm:flex-row justify-between min-h-screen'>
-      <div className="w-[65%]">
-        <table className="table-auto w-full">
+    <div className='mt-20 w-screen px-5 flex flex-col md:flex-row md:justify-between min-h-screen gap-6'>
+      <div className="md:w-[65%]">
+        <table className="table-auto w-full h-max">
           <thead className='font-Playfair'>
-            <tr className="border-b border-black">
-              <th className="text-left px-4 py-2 font-light">Book</th>
-              <th className="text-left px-4 py-2 font-light">Info</th>
-              <th className="text-left px-4 py-2 font-light">Price</th>
-              <th className="text-left px-4 py-2 font-light">Qty</th>
-              <th className="text-left px-4 py-2 font-light">Estimate delivery date</th>
+            <tr className="border-b border-black text-sm sm:text-lg">
+              <th className="text-left px-1 sm:px-4 py-2 font-light">Book</th>
+              <th className="text-left px-1 sm:px-4 py-2 font-light">Info</th>
+              <th className="text-left px-1 sm:px-4 py-2 font-light">Price</th>
+              <th className="text-left px-1 sm:px-4 py-2 font-light">Qty</th>
+              <th className="text-left px-1 sm:px-4 py-2 font-light">Delivery by</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="border-b border-black">
-              <td className="px-4 py-2">
-                <img src="/images/book1.jpg" alt="Book Cover" className="h-32 w-auto" />
+          <tbody className='h-full'>
+            <tr className="border-b border-black h-full">
+              <td className="px-1 sm:px-4 py-2">
+                <img src="/images/book1.jpg" alt="Book Cover" className=" h-28 grid3:h-32 w-auto" />
               </td>
-              <td className="px-4 py-2">
+              <td className="px-1 sm:px-4 py-2">
                 <div>
-                  <p className="text-lg text-light">My first doctor visit</p>
-                  <h3 className="text-sm text-gray-600">By: Ravi Patel</h3>
+                  <p className=" text-sm grid3:text-base sm:text-lg text-light">My first doctor visit</p>
+                  <h3 className="text-xs text-gray-600">By: Ravi Patel</h3>
                 </div>
               </td>
-              <td className="px-4 py-2">250rs</td>
-              <td className="px-4 py-2 ">
-                <button className="border border-gray-400 px-2 py-1 mr-1 rounded">-</button>
-                <span>1</span>
-                <button className="border border-gray-400 px-2 py-1 ml-1 rounded">+</button>
+              <td className="px-1 sm:px-4 py-2 text-sm grid3:text-lg">250rs</td>
+              <td className="px-1 sm:px-4 py-2  ">
+                <input type="number" name="" id="" placeholder='1' className=' w-7 outline-none text-sm grid3:text-lg px-2 py-2 hover:bg-gray-200' />
               </td>
-              <td className="px-4 py-2">{getDateFiveDaysAhead()}</td>
+              <td className=" px-1 sm:px-4 py-2 text-sm grid3:text-lg">{getDateFiveDaysAhead()}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-        <div className='w-4/12 h-max px-5 py-5 border rounded-xl border-slate-400 '>
+        <div className='md:w-4/12 h-max px-5 py-5 border rounded-xl border-slate-400 '>
           <p className='text-3xl'>Order detail</p>
           <table className='border-separate border-spacing-1 mt-3 text-base mb-3 font-light w-full'>
             <tbody>

@@ -12,7 +12,7 @@ export default {
       },
       screens:{
         'grid3': '500px',
-        'grid2': '360px',
+        'grid2': '365px',
       },
     },
   },
