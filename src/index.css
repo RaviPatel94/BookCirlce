@@ -13,3 +13,9 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+@layer components{
+ .sideopt{
+    @apply px-2 py-3 text-[19px] hover:bg-white cursor-pointer
+  }
+}

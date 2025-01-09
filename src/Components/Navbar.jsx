@@ -16,7 +16,7 @@ function Navbar() {
 
   return (
     <nav className='w-screen top-0 fixed pt-2 px-2 z-40 bg-black bg-opacity-50 text-white'>
-    <div className='flex justify-between items-center pb-1'>
+    <div className=' flex justify-between items-center pb-1'>
         <div className='flex gap-7'>
           <Link to="/">
           <h1 className='text-2xl cursor-pointer font-Playfair'>BookCircle</h1></Link>
@@ -32,7 +32,7 @@ function Navbar() {
           <div className={`absolute bg-white right-0 top-[38px] rounded-md text-black py-1 px-2 text-lg ${navopt?"":"hidden"}`} >
             <ul >
             <NavLink to="/login"><li className='border-b border-gray-500 py-1'>Login</li></NavLink>
-              <li className='border-b border-gray-500 py-1'>Profile</li>
+            <NavLink to="/profile"> <li className='border-b border-gray-500 py-1'>Profile</li></NavLink>
               <li className='py-1'>Signout</li>
             </ul>
           </div>

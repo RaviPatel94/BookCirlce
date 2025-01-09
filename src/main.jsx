@@ -9,6 +9,7 @@ import Menu from './Components/Menu'
 import Cart from './Components/Cart.jsx'
 import Login from './Components/Login.jsx'
 import Navbar from './Components/Navbar.jsx'
+import Profile from './Components/Profile.jsx'
 
 
 const router = createBrowserRouter([{
@@ -36,6 +37,14 @@ const router = createBrowserRouter([{
     {
       path:'login',
       element:<Login/>
+    },
+    {
+      path:'profile',
+      element:(
+        <>
+        <Navbar/>
+        <Profile/>
+        </>)
     },
   ]
 }])
