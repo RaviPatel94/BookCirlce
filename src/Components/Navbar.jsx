@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useCategory } from './Context/Category';
 import { Link, NavLink } from 'react-router-dom';
 function Navbar() {
@@ -13,6 +13,14 @@ function Navbar() {
       setcategory(search)
     }
   }
+
+  // const optclose=()=>{
+  //   window.addEventListener("click",()=>{
+  //     if(navopt)
+  //     setnavopt(false)
+  //   })
+  // }
+  //   optclose()
 
   return (
     <nav className='w-screen top-0 fixed pt-2 px-2 z-40 bg-black bg-opacity-50 text-white'>
@@ -29,11 +37,13 @@ function Navbar() {
           <NavLink to="/cart"> <img src="/images/cart.png" alt="Cart icon" className='h-6 sm:h-8 cursor-pointer ' /></NavLink>
           <div>
           <img src="/images/pfp.jpg" alt=" Profile picture" className='h-6 sm:h-8 cursor-pointer rounded-full' onClick={()=>setnavopt(prev=>!prev)} />
-          <div className={`absolute bg-white right-0 top-[38px] rounded-md text-black py-1 px-2 text-lg ${navopt?"":"hidden"}`} >
+          <div className={` w-48 absolute bg-white right-0 top-[38px] shadow-sm shadow-gray-700 rounded-md text-black py-1 text-lg ${navopt?"":"hidden"}`} >
             <ul >
-            <NavLink to="/login"><li className='border-b border-gray-500 py-1'>Login</li></NavLink>
-            <NavLink to="/profile"> <li className='border-b border-gray-500 py-1'>Profile</li></NavLink>
-              <li className='py-1'>Signout</li>
+            <NavLink to="/login"><li className=' border-gray-500 py-2 hover:bg-gray-200 px-2'>Login</li></NavLink>
+            <NavLink to="/profile"> <li className=' border-gray-500 py-2 hover:bg-gray-200 px-2'>Profile</li></NavLink>
+            <li className='py-2 hover:bg-gray-200  border-gray-500 px-2 '>Contact</li>
+            <li className='py-2 hover:bg-gray-200  border-gray-500 px-2'>Settings</li>
+            <li className='py-2 hover:bg-gray-200 px-2'>Signout</li>
             </ul>
           </div>
           </div>

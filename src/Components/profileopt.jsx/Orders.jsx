@@ -2,7 +2,7 @@ import React from 'react'
 
 function Orders() {
   return (
-    <div className='w-full flex flex-col items-center justify-center'>
+    <div id='orders' className='w-full flex flex-col items-center justify-center'>
         <div className='w-10/12 flex flex-col items-start'>
         <h1 className='text-3xl mb-4'>Your Orders</h1>
         <table className='w-full table-fixed text-center border-separate border-spacing-y-2 font-normal'>
@@ -28,7 +28,7 @@ function Orders() {
                 <tr>
                     <td>1654</td>
                     <td><img src="/images/book3.jpg" className='h-24 mx-auto' alt="" /></td>
-                    <td className='truncate'>Wonder worm  <div className='text-sm font-light'>by Hrish singh</div></td>
+                    <td className='truncate'>Wonder worm  <div className='text-sm font-light'>by Saurabh Patel</div></td>
                     <td>490rs</td>
                     <td>26/12/2024</td>
                     <td><div className='flex items-center justify-center gap-2' > <div className='h-[10px] w-[10px] bg-blue-500 rounded-full'></div>Shipped </div></td>

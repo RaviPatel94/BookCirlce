@@ -9,13 +9,13 @@ const [edit, setedit] = useState(false)
   const [country, setcountry] = useState("India")
 
   return (
-    <div className='flex h-max justify-around items-center w-full'>
-      <div className='flex w-full justify-around h-max items-start'>
+    <div id='address' className='flex h-max justify-between items-center w-9/12'>
+      <div className='flex w-full justify-between h-max items-start'>
         <div className=' h-full flex justify-center gap-12 flex-col'>
             <div>
             <h1 className='text-3xl mb-1'>Address Info</h1>
             <p className='bg-slate-200 px-3 py-[2px] rounded-lg w-max'>This Information won't be visible to anyone.</p></div>
-            <div className='flex flex-col gap-5 text-xl font-light'>
+            <div className='flex flex-col gap-5 text-lg font-light'>
                 <div className='w-max'>Address line 1 : <input type="text" placeholder='201/C, ABC building' value={address1} readOnly={!edit} onChange={(e)=>setaddress1(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
                 <div>Address line 2 : <input type="text" placeholder='Your FullName' value={address2} readOnly={!edit} onChange={(e)=>setaddress2(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
                 <div>City : <input type="text" placeholder='Your city' value={city} readOnly={!edit} onChange={(e)=>setcity(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
