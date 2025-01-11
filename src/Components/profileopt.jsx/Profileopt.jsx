@@ -18,13 +18,19 @@ function Profileopt() {
   }
 
   return (
-    <div id='profile' className='flex h-max pt-14 justify-between items-center w-9/12'>
+    <div id='profile' className='flex h-max pt-14 justify-between items-center w-10/12 md:w-9/12'>
       <div className='flex w-full justify-between h-max items-start'>
         <div className=' h-full flex justify-center gap-12 flex-col'>
             <div>
-            <h1 className='text-3xl mb-1'>Your Profile</h1>
-            <p className='bg-slate-200 px-3 py-[2px] rounded-lg w-max '>!Note : Everyone can see these details on your profile.</p></div>
-            <div className='flex flex-col gap-5 text-lg font-light'>
+            <h1 className='text-2xl lg:text-3xl mb-1'>Your Profile</h1>
+            <p className='bg-slate-200 px-3 py-[2px] rounded-lg w-max text-xs lg:text-sm '>!Note : Everyone can see these details on your profile.</p></div>
+            <div className=' z-0 w-max flex flex-col gap-6 text-sm lg:text-base items-center relative grid3:hidden' >
+        <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100' onClick={()=>setedit(prev=>!prev)}>{edit?"Save":"Edit Profile"}</button>
+            <img src={image} className='size-28 lg:size-32 rounded-full brightness-90' alt="Profile pic" />
+            <input type="file" accept='image/*' placeholder={image} className={`absolute w-max -right-36 top-48 right-0 ${edit?"":"hidden"}`} onChange={handlefile} />
+            
+        </div>
+            <div className='flex flex-col gap-5 text-base lg:text-lg font-light'>
                 <div className='w-max'>Username : <input type="text" placeholder='Your Username' value={name} readOnly={!edit} onChange={(e)=>setname(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
                 <div>Full Name : <input type="text" placeholder='Your FullName' value={username} readOnly={!edit} onChange={(e)=>setusername(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
                 <div>Email : <input type="text" placeholder='Your Email' value={email} readOnly={!edit} onChange={(e)=>setemail(e.target.value)} className={`px-2 outline-none w-max cursor-default ${edit?"bg-slate-200 rounded-lg cursor-text":""}`} /></div>
@@ -33,10 +39,10 @@ function Profileopt() {
             </div>
 
         </div>
-        <div className='flex flex-col gap-6 text-base items-center relative' >
+        <div className='grid3:flex flex-col gap-6 text-sm lg:text-base items-center relative hidden grid3:block' >
         <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100' onClick={()=>setedit(prev=>!prev)}>{edit?"Save":"Edit Profile"}</button>
-            <img src={image} className='w-32 h-32 rounded-full brightness-90' alt="Profile pic" />
-            <input type="file" accept='image/*' placeholder={image} className={`absolute top-48 -right-36 ${edit?"":"hidden"}`} onChange={handlefile} />
+            <img src={image} className='size-28 lg:size-32 rounded-full brightness-90' alt="Profile pic" />
+            <input type="file" accept='image/*' placeholder={image} className={`absolute w-max -right-36 top-48 right-0 ${edit?"":"hidden"}`} onChange={handlefile} />
             
         </div>
         </div>
