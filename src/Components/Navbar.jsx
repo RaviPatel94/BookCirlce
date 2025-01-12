@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useCategory } from './Context/Category';
 import { Link, NavLink } from 'react-router-dom';
+import { Search } from 'lucide-react';
 
 function Navbar() {
   let categories = ["Trending", "Fiction", "Non-fiction", "Academic", "Comics", "Novels", "Biographies", "Children's Books", "Science Fiction", "Fantasy", "Self-help", "Mystery", "Romance", "Thriller", "Poetry", "Graphic Novels", "Historical Fiction", "Cookbooks"];
@@ -36,13 +37,16 @@ function Navbar() {
           <Link to="/">
             <h1 className='text-2xl cursor-pointer font-Playfair'>BookCircle</h1>
           </Link>
+          <div className='relative hidden sm:block'>
+          <Search color='#000000' className='absolute left-1 top-1'/>
           <input 
             type="text" 
-            placeholder='Search' 
-            className='hidden sm:block border border-black w-96 bg-zinc-200 px-2 py-1 placeholder:text-black text-black placeholder:text-lg outline-none'
+            placeholder="Search"
+            className=' border border-black w-96 bg-zinc-200 pl-8 py-1 placeholder:text-black text-black placeholder:text-lg outline-none'
             onChange={(e) => setsearch(e.target.value)}
             onKeyDown={searchbook} 
           />
+          </div>
         </div>
         <div className='flex gap-5'>
           <img 

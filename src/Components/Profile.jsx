@@ -6,6 +6,7 @@ import Books from './profileopt.jsx/Books'
 import Payment from './profileopt.jsx/Payment'
 import Rewards from './profileopt.jsx/Rewards'
 import Help from './profileopt.jsx/Help'
+import { User,House,FileClock,BookCopy,CreditCard,Gift,CircleHelp, Settings, LogOut, Mail, ShoppingCart } from 'lucide-react';
 
 function Profile() {
 
@@ -28,37 +29,37 @@ function Profile() {
         <ul className={` z-10 h-full absolute md:static w-52 lg:w-64  md:flex flex-col border-r-2 font-light border-slate-500 bg-gray-200 divide-y-[2px] divide-gray-200 transition-all duration-200 ${opennav?"flex" :"hidden"} `}>
           <li className='sideopt flex gap-2 items-center'
           onClick={()=>setinview("profile")}
-          > <img src="/images/pfp.jpg" alt="pfp" className='w-6 h-6 rounded-full'/> Profile</li>
-          <li className='sideopt'
+          > <User /> Profile</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("address")}
-          >Address Info</li>
-          <li className='sideopt'
+          > <House/> Address Info</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("orders")}
-          >My Orders</li>
-          <li className='sideopt'
+          > <FileClock/> My Orders</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("mybooks")}
-          >My Books</li>
-          <li className='sideopt'
+          > <BookCopy/> My Books</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("Payment")}
-          >Payment method</li>
-          <li className='sideopt'
+          > <CreditCard />Payment method</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("rewards")}
-          >Rewards</li>
-          <li className='sideopt'
+          ><Gift/>Rewards</li>
+          <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("help")}
-          >Help?</li>
-          <li className='sideopt border'
+          ><CircleHelp/>Help?</li>
+          <li className='sideopt border flex gap-2 pl-2'
           onClick={()=>setinview("signout")}
-          >Sign Out</li>
+          ><LogOut/>Sign Out</li>
         </ul>
         <div className='w-full h-full overflow-y-scroll pb-10 flex flex-col items-center gap-20'>
           <Profileopt/>
            <Addinfo/>
           <Orders/>
-          {/*<Books/>
+          <Books/>
           <Payment/>
           <Rewards/>
-          <Help/> */}
+          <Help/>
         </div>
     </main>
   )
