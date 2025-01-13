@@ -29,7 +29,12 @@ function Orders() {
                     <td className=' h-full w-full hidden grid3:table-cell'>450rs</td>
                     <td className=' h-full w-full hidden grid3:table-cell'>29/12/2024</td>
                     
-                    <td className='h-full w-3/12 py-1'><div className=' flex grid3:block items-center my-auto flex-col w-full h-full justify-between  grid3:justify-center pt-1'><div className='flex items-center justify-center gap-2' > <div className=' sm:max-lg:hidden h-[10px] w-[10px] bg-blue-500 rounded-full'></div><div className='hidden sm:table-cell'>Processed</div></div> 
+                    <td className='h-full w-3/12 py-1'>
+                        <div className=' flex grid3:block items-center my-auto flex-col w-full h-full justify-between  grid3:justify-center pt-1'>
+                        <div className='flex items-center justify-center h-full w-full gap-2' > 
+                        <div className=' sm:max-lg:hidden h-[10px] w-[10px] bg-blue-500 rounded-full'></div>
+                        <div className='hidden sm:block '>Processed</div>
+                        </div> 
                     <div className='grid3:hidden block'>Id:1234</div></div></td>
                 </tr>
 
@@ -51,7 +56,7 @@ function Orders() {
                 <td className='h-full w-full hidden grid3:table-cell'>26/12/2024</td>
                 <td className='h-full w-3/12 py-1'>
                     <div className='flex items-center my-auto flex-col w-full h-full justify-between pt-1'>
-                        <div className='flex items-center justify-center gap-2'>
+                        <div className='flex items-center justify-center h-full w-full gap-2'>
                             <div className='sm:max-lg:hidden h-[10px] w-[10px] bg-purple-700 rounded-full'></div>
                             <div className='hidden sm:table-cell'>Shipped</div>
                         </div>
@@ -77,7 +82,7 @@ function Orders() {
                     <td className='h-full w-full hidden grid3:table-cell'>20/12/2024</td>
                     <td className='h-full w-3/12 py-1'>
                         <div className='flex items-center my-auto flex-col w-full h-full justify-between pt-1'>
-                            <div className='flex items-center justify-center gap-2'>
+                            <div className='flex items-center justify-center h-full w-full gap-2'>
                                 <div className='sm:max-lg:hidden h-[10px] w-[10px] bg-green-500 rounded-full'></div>
                                 <div className='hidden sm:table-cell'>Delivered</div>
                             </div>
@@ -103,7 +108,7 @@ function Orders() {
                     <td className='h-full w-full hidden grid3:table-cell'>02/12/2024</td>
                     <td className='h-full w-3/12 py-1'>
                         <div className='flex items-center my-auto flex-col w-full h-full justify-between pt-1'>
-                            <div className='flex items-center justify-center gap-2'>
+                            <div className='flex items-center justify-center h-full w-full gap-2'>
                                 <div className='sm:max-lg:hidden h-[10px] w-[10px] bg-green-500 rounded-full'></div>
                                 <div className='hidden sm:table-cell'>Delivered</div>
                             </div>
@@ -129,7 +134,7 @@ function Orders() {
                     <td className='h-full w-full hidden grid3:table-cell'>12/11/2024</td>
                     <td className='h-full w-3/12 py-1'>
                         <div className='flex items-center my-auto flex-col w-full h-full justify-between pt-1'>
-                            <div className='flex items-center justify-center gap-2'>
+                            <div className='flex items-center justify-center h-full w-full gap-2'>
                                 <div className='sm:max-lg:hidden h-[10px] w-[10px] bg-green-500 rounded-full'></div>
                                 <div className='hidden sm:table-cell'>Delivered</div>
                             </div>
