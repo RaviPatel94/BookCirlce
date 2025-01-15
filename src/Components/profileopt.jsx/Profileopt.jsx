@@ -42,7 +42,7 @@ function Profileopt() {
         <div className='grid3:flex flex-col gap-6 text-sm lg:text-base items-center relative hidden grid3:block' >
         <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100' onClick={()=>setedit(prev=>!prev)}>{edit?"Save":"Edit Profile"}</button>
             <img src={image} className='size-28 lg:size-32 rounded-full brightness-90' alt="Profile pic" />
-            <input type="file" accept='image/*' placeholder={image} className={`absolute w-max -right-36 top-48 right-0 ${edit?"":"hidden"}`} onChange={handlefile} />
+            <input type="file" accept='image/*' placeholder={image} className={`absolute w-max -right-36 top-48 ${edit?"":"hidden"}`} onChange={handlefile} />
             
         </div>
         </div>
