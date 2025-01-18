@@ -2,7 +2,7 @@ import { Trash2 } from 'lucide-react'
 import React, { useState } from 'react'
 
 function Books() {
-
+    const [editing, setediting] = useState(false)
     const [pick, setpick] = useState("401/B ABC nagar, 123456, kak city, india")
     const [editpick, seteditpick] = useState(false)
     const [image, setimage] = useState("/images/pfp.jpg")
@@ -24,10 +24,12 @@ function Books() {
 
         <div className='flex w-full justify-between'>
         <h1 className=' text-2xl lg:text-3xl mb-4'>Your Books</h1>
-        <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100 h-max'>Add Book</button>
+        <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100 h-max'
+        onClick={()=>setediting((prev)=>!prev)}
+        >Add Book</button>
         </div>
 
-        <form  className='py-6 flex w-full justify-between'>
+        <form  className={`py-6 flex w-full justify-between ${editing?"":"hidden"}`}>
             <div className='flex flex-col items-start gap-6 text-base lg:text-lg '>
                 <div>
                 <label htmlFor="title">Title : </label>
