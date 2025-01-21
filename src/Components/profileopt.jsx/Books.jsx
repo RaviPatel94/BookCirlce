@@ -36,7 +36,7 @@ function Books() {
                 <input type="text" name='title' className='bg-slate-200 outline-none px-1 rounded-md'  /></div>
                 <div><label htmlFor="Author">Author : </label>
                 <input type="text" name='Author' className='bg-slate-200 outline-none px-1 rounded-md'  /></div>
-                <div className='flex gap-10 w-full'>
+                <div className='flex gap-2 grid2:gap-10 w-full'>
                     <div>
                 <label htmlFor="Price">Price : </label>
                 <input type="number" name='Price' className='bg-slate-200 outline-none px-1 rounded-md w-20'  />
@@ -63,11 +63,11 @@ function Books() {
                     <input type="text" name='padd' value={pick} className={` lg:w-[275px] outline-none truncate px-1 py-[2px] rounded-md ${editpick?"bg-slate-200":""}`} onChange={(e)=>setpick(e.target.value)} readOnly={!editpick} />
                     <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100 h-max' onClick={editingpick}>{editpick?"Save":"Edit"}</button>
                 </div>
-                <div className='flex gap-1 rounded-md'>
+                <div className='flex grid2:flex-row flex-col gap-1 rounded-md'>
                 <label htmlFor="desc" className='whitespace-nowrap'>Description : </label>
                 <textarea name="desc" id="" className= 'px-1 bg-slate-200 outline-none w-64 lg:w-96 h-20 ' placeholder='Information about the book'></textarea></div>
             </div>
-            <div className='flex flex-col sm:flex-row gap-3 h-max'>
+            <div className='hidden grid3:flex flex-col sm:flex-row gap-3 h-max'>
                 <img src={image} className='h-28' />
                 <div className='w-40 flex flex-col justify-between'>
                     <p>Click and Upload a picture of book cover.</p>
