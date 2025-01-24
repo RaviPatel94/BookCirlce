@@ -4,7 +4,7 @@ function Orders() {
   return (
     <div id='orders' className='w-full flex flex-col items-center justify-center'>
         <div className=' px-2 grid3:px-4 lg:w-11/12 flex flex-col items-start'>
-        <h1 className=' text-2xl lg:text-3xl mb-4'>Your Orders</h1>
+        <h1 className=' text-2xl lg:text-3xl mb-4 px-2 grid3:px-10'>Your Orders</h1>
         <table className=' mx-auto w-full grid3:w-[97%] lg:w-[95%] h-max table-fixed text-center border border-black grid3:border-none rounded-xl border-separate border-spacing-y-6 grid3:border-spacing-y-2 font lg:font-normal'>
             <thead className=' hidden grid3:contents border-b border-slate-700 text-sm sm:text-[16px] lg:text-lg '>
                 <tr >
