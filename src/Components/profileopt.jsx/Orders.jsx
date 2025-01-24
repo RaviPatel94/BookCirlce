@@ -17,7 +17,7 @@ function Orders() {
                 </tr>
             </thead>
             <tbody className='h-full' >
-                <tr className=' text-sm sm:text-[16px] lg:text-lg h-full w-full '>
+                <tr className=' text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100 '>
                     <td className='py-6 hidden grid3:block'>1234</td>
                     <td className='w-3/12'><img src="/images/book2.jpg" className=' h-20 lg:h-24 mx-auto' alt="" /></td>
                     <td className=' w-6/12 h-full py-1 '> <div className='flex grid3:contents  flex-col w-full h-full items-center justify-between'> <div className=' min-w-44 truncate'>A guide for mbbs students <div className='text-sm font-light'>by Dr rd verma</div></div>
@@ -38,7 +38,7 @@ function Orders() {
                     <div className='grid3:hidden block'>Id:1234</div></div></td>
                 </tr>
 
-                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full'>
+                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100'>
                 <td className='py-6 hidden grid3:block'>1654</td>
                 <td className='w-3/12'><img src="/images/book3.jpg" className='h-20 lg:h-24 mx-auto' alt="" /></td>
                 <td className='w-6/12 h-full py-1'>
@@ -64,7 +64,7 @@ function Orders() {
                     </div>
                 </td>
                  </tr>
-                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full'>
+                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100'>
                     <td className='py-6 hidden grid3:block'>1983</td>
                     <td className='w-3/12'><img src="/images/book4.jpg" className='h-20 lg:h-24 mx-auto' alt="" /></td>
                     <td className='w-6/12 h-full py-1'>
@@ -90,7 +90,7 @@ function Orders() {
                         </div>
                     </td>
                 </tr>
-                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full'>
+                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100'>
                     <td className='py-6 hidden grid3:block'>2349</td>
                     <td className='w-3/12'><img src="/images/book5.jpg" className='h-20 lg:h-24 mx-auto' alt="" /></td>
                     <td className='w-6/12 h-full py-1'>
@@ -116,7 +116,7 @@ function Orders() {
                         </div>
                     </td>
                 </tr>
-                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full'>
+                <tr className='text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100'>
                     <td className='py-6 hidden grid3:block'>3072</td>
                     <td className='w-3/12'><img src="/images/book1.jpg" className='h-20 lg:h-24 mx-auto' alt="" /></td>
                     <td className='w-6/12 h-full py-1'>

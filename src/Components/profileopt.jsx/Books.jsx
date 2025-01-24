@@ -5,7 +5,7 @@ function Books() {
     const [editing, setEditing] = useState(false)
     const [pick, setPick] = useState("401/B ABC nagar, 123456, kak city, india")
     const [editPick, setEditPick] = useState(false)
-    const [image, setImage] = useState("/images/pfp.jpg")
+    const [image, setImage] = useState("/images/bookcover.png")
     const [formData, setFormData] = useState({
         title: '',
         author: '',
@@ -13,7 +13,7 @@ function Books() {
         currency: '₹',
         quantity: '',
         description: '',
-        image: '/images/pfp.jpg'
+        image: '/images/bookcover.png'
     })
     const [books, setBooks] = useState([
         {
@@ -98,9 +98,9 @@ function Books() {
             currency: '₹',
             quantity: '',
             description: '',
-            image: '/images/pfp.jpg'
+            image: '/images/bookcover.png'
         })
-        setImage('/images/pfp.jpg')
+        setImage('/images/bookcover.png')
     }
 
     const handleDeleteBook = (id) => {
@@ -108,11 +108,11 @@ function Books() {
     }
 
     return (
-        <div id='mybooks' className='w-full flex flex-col items-center justify-center'>
+        <div id='mybooks' className='w-11/12 flex flex-col items-center justify-center'>
             <div className='px-2 grid3:px-4 lg:w-11/12 flex flex-col items-start'>
                 <div className='flex w-full justify-between'>
                     <h1 className='text-2xl lg:text-3xl mb-4'>Your Books</h1>
-                    <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100 h-max'
+                    <button className='bg-gray-200 hover:bg-black px-3 py-1 rounded-md hover:text-white border border-black outline-none h-max'
                         onClick={() => setEditing((prev) => !prev)}
                     >Add Book</button>
                 </div>
@@ -241,7 +241,7 @@ function Books() {
                     </thead>
                     <tbody className='h-full'>
                         {books.map((book) => (
-                            <tr key={book.id} className='text-sm sm:text-[16px] lg:text-lg h-full w-full'>
+                            <tr key={book.id} className='text-sm sm:text-[16px] lg:text-lg h-full w-full grid3:hover:bg-slate-100'>
                                 <td className='w-3/12'><img src={book.cover} className='h-20 lg:h-24 mx-auto' alt="" /></td>
                                 <td className='w-6/12 h-full py-1'>
                                     <div className='flex grid3:contents flex-col w-full h-full items-center justify-between'>
