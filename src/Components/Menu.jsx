@@ -19,6 +19,7 @@ const Menu = () => {
       );
       if (res.data.items) {
         setData(res.data.items);
+        console.log(res.data.items)
       } else {
         setData([]);
       }
