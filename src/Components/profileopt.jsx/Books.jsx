@@ -112,7 +112,7 @@ function Books() {
             <div className='px-2 grid3:px-4 lg:w-11/12 flex flex-col items-start'>
                 <div className='flex w-full justify-between'>
                     <h1 className='text-2xl lg:text-3xl mb-4'>Your Books</h1>
-                    <button className='bg-gray-200 hover:bg-black px-3 py-1 rounded-md hover:text-white border border-black outline-none h-max'
+                    <button className='bg-blue-500 px-3 py-1 rounded-md hover:bg-blue-600 hover:text-gray-100 h-max'
                         onClick={() => setEditing((prev) => !prev)}
                     >Add Book</button>
                 </div>
