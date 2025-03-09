@@ -11,8 +11,8 @@ function Hero() {
   return (
     <div className='h-screen w-screen'>
         <div className='relative flex items-center justify-center'>
-            <img src="/images/poster.jpg" alt="" className='h-screen w-screen object-cover' />
-            <div className='absolute text-white flex flex-col items-center gap-3'>
+            <img src="/images/poster.jpg" alt="" className='h-screen brightness-75 w-screen object-cover' />
+            <div className='absolute text-white flex flex-col items-center gap-3 '>
                 <h1 className='grid3:text-8xl text-6xl drop-shadow-md font-Playfair'>BookCircle</h1>
                 <h2 className='grid3:text-4xl text-center text-2xl pb-2 drop-shadow-md'>Books Within Reach: Buy, Rent, Read, Repeat! </h2>
                 <div className='flex gap-4 text-xl'>

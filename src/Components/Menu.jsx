@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useCategory } from './Context/Category';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
   const apiKey = import.meta.env.VITE_BOOK;
@@ -9,6 +10,7 @@ const Menu = () => {
   const [indexCount, setIndexCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Use the useNavigate hook
 
   const getMainBooks = async () => {
     try {
@@ -19,7 +21,7 @@ const Menu = () => {
       );
       if (res.data.items) {
         setData(res.data.items);
-        console.log(res.data.items)
+        console.log(res.data.items);
       } else {
         setData([]);
       }
@@ -41,7 +43,7 @@ const Menu = () => {
       if (res.data.items) {
         setData(prevData => [...prevData, ...res.data.items]);
         setIndexCount(prev => prev + 40);
-        console.log("loaded more data")
+        console.log("loaded more data");
       }
     } catch (error) {
       console.error("Load more error:", error);
@@ -76,16 +78,17 @@ const Menu = () => {
             return (
               <div
                 key={item.id}
-                className="border-2 flex flex-col items-center justify-center h-max py-2 cursor-pointer hover:bg-gray-200"
+                className="group relative border-2 max-h-[240px] overflow-hidden flex flex-col items-center justify-center  py-2 hover:py-0 cursor-pointer hover:bg-gray-200"
+                onClick={() => navigate(`/book/${item.id}`)}
               >
-                <div className="h-[160.71px] w-[100px] md:w-[106px] md:h-[170.71px] lg:h-[176.71px] lg:w-[120px]">
+                <div className="h-[160.71px] w-[100px] md:w-[106px] md:h-[170.71px] lg:h-[176.71px] lg:w-[120px] group-hover:h-full group-hover:w-full">
                   <img
                     src={thumbnail}
                     alt={`Cover of ${item.volumeInfo.title}`}
                     className="w-full h-full object-fill"
                   />
                 </div>
-                <div className="flex flex-col items-center w-full pt-2">
+                <div className="flex group-hover:absolute group-hover:bottom-0 group-hover:text-white group-hover:bg-black group-hover:bg-opacity-50 flex-col items-center w-full pt-2">
                   <h3 className="w-11/12 text-sm truncate">
                     {item.volumeInfo.title}
                   </h3>

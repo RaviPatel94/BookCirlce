@@ -24,7 +24,8 @@ function Orders() {
                     <div className='flex w-full grid3:hidden justify-between'>
                     <div>450rs</div>
                     <div>29/12/2024</div>
-                    </div></div>
+                    </div>
+                    </div>
                      </td>
                     <td className=' h-full w-full hidden grid3:table-cell'>450rs</td>
                     <td className=' h-full w-full hidden grid3:table-cell'>29/12/2024</td>
