@@ -40,7 +40,7 @@ const BookDetail = () => {
         if (res.data.volumeInfo.categories && res.data.volumeInfo.categories.length > 0) {
           const category = res.data.volumeInfo.categories[0]
           const recommendationsRes = await axios.get(
-            `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&maxResults=10`,
+            `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&maxResults=40`,
           )
 
           // Filter out the current book from recommendations
@@ -145,6 +145,10 @@ const BookDetail = () => {
     )
   }
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+  };  
+
   // Generate random price for book (since Google Books API doesn't always provide price)
   const randomPrice = Math.floor(Math.random() * (999 - 199 + 1)) + 199
 
@@ -165,7 +169,7 @@ const BookDetail = () => {
                     <img
                       src={book.imageLinks.thumbnail.replace("http:", "https:") || "/placeholder.svg"}
                       alt={`Cover of ${book.title}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -173,14 +177,6 @@ const BookDetail = () => {
                     </div>
                   )}
                 </div>
-                {book.categories && (
-                  <span
-                    className="absolute top-3 right-3 bg-primary text-white text-xs px-2 py-1 rounded cursor-pointer hover:bg-primary/90"
-                    onClick={() => handleCategoryClick(book.categories[0])}
-                  >
-                    {book.categories[0]}
-                  </span>
-                )}
               </div>
             </div>
 
@@ -188,10 +184,10 @@ const BookDetail = () => {
             <div className="md:w-2/3">
               <div className="flex flex-col h-full justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-800 mb-2">{book.title}</h1>
+                  <h1 className="text-3xl font-bold text-gray-800 mb-4">{book.title}</h1>
                   {book.subtitle && <p className="text-lg text-gray-600 mb-4">{book.subtitle}</p>}
 
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-6">
                     <div className="flex items-center text-yellow-400">
                       {[...Array(5)].map((_, i) => (
                         <span key={i} className={i < rating ? "text-yellow-400" : "text-gray-300"}>
@@ -204,7 +200,7 @@ const BookDetail = () => {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                     <div className="flex items-center">
                       <FiUser className="text-gray-500 mr-2" />
                       <span className="text-sm">
@@ -236,26 +232,26 @@ const BookDetail = () => {
                   </div>
                 </div>
 
+                <div className="text-2xl font-bold text-primary">₹{randomPrice}</div>
+
                 <div className="mt-auto">
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
                     <button
-                      className=" border-gray-300 hover:bg-gray-50 text-black py-2 px-6 rounded-lg flex items-center justify-center"
+                      className=" border border-gray-300 hover:bg-green-200 active:bg-green-500 text-black py-2 px-6 rounded-lg flex items-center justify-center"
                       onClick={addToCart}
                     >
                       <FiShoppingCart className="mr-2" />
                       Add to Cart
                     </button>
-                    <button className="border border-gray-300 hover:bg-gray-50 py-2 px-6 rounded-lg flex items-center justify-center">
+                    <button className=" hover:bg-red-200 active:bg-red-500 py-2 px-6 rounded-lg flex items-center justify-center">
                       <FiHeart className="mr-2" />
                       Add to Wishlist
                     </button>
-                    <button className="border border-gray-300 hover:bg-gray-50 py-2 px-6 rounded-lg flex items-center justify-center sm:ml-auto">
+                    <button onClick={copyToClipboard} className="border border-gray-300 hover:bg-blue-200 active:bg-blue-500 py-2 px-6 rounded-lg flex items-center justify-center sm:ml-auto">
                       <FiShare2 className="mr-2" />
                       Share
                     </button>
                   </div>
-
-                  <div className="text-2xl font-bold text-primary">₹{randomPrice}</div>
                 </div>
               </div>
             </div>

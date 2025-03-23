@@ -30,6 +30,8 @@ function Navbar() {
   const [search, setsearch] = useState(" ")
   const [allowsearch, setallowsearch] = useState(false)
   const [navopt, setnavopt] = useState(false)
+  const [showCategories, setShowCategories] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const dropdownRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
@@ -50,6 +52,28 @@ function Navbar() {
       navigate("/")
     }
   }
+
+  // Handle scroll events to show/hide category section
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide categories
+        setShowCategories(false);
+      } else {
+        // Scrolling up - show categories
+        setShowCategories(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -117,7 +141,11 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div>
+      <div 
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          showCategories ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
         <ul className="flex overflow-x-auto gap-4 no-scrollbar pb-2 font-light">
           {categories.map((category, index) => (
             <li
@@ -142,4 +170,3 @@ function Navbar() {
 }
 
 export default Navbar
-
