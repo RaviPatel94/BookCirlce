@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 function Login() {
   const [signin, setsignin] = useState(true);
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -14,7 +14,7 @@ function Login() {
 
   const switchsign = () => {
     setsignin((prev) => !prev);
-    setFormData({ name: "", email: "", password: "" });
+    setFormData({ username: "", email: "", password: "" });
   };
 
   // handle input changes
@@ -26,7 +26,7 @@ function Login() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8080/auth/signup", {
+      const res = await fetch("https://bookcircleapi.onrender.com/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -43,35 +43,34 @@ function Login() {
     }
   };
 
-// Signin
-const handleSignin = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await fetch("http://localhost:8080/auth/signin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      }),
-    });
+  // Signin
+  const handleSignin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("https://bookcircleapi.onrender.com/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
       const data = await res.json();
 
-    if (res.ok && data.token) {
-      toast.success("Welcome back! 🎉");
+      if (res.ok && data.token) {
+        toast.success("Welcome back! 🎉");
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify({ email: formData.email }));
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify({ email: formData.email }));
 
-      navigate("/profile");
-    } else {
-      toast.error("Invalid credentials ❌");
+        navigate("/");
+      } else {
+        toast.error("Invalid credentials ❌");
+      }
+    } catch (err) {
+      toast.error("Something went wrong!");
     }
-  } catch (err) {
-    toast.error("Something went wrong!");
-  }
-};
-
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen w-screen gap-9 z-[1000] sm:flex-row py-20">
@@ -155,11 +154,11 @@ const handleSignin = async (e) => {
         >
           <h1 className="text-2xl">SignUp</h1>
           <div className="flex flex-col w-full">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className="border border-black rounded-md h-8 outline-none px-1"
               required

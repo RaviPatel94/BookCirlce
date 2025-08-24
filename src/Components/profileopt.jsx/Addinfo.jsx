@@ -13,7 +13,7 @@ function Addinfo() {
   // Fetch existing address when component loads
   useEffect(() => {
     if (!token) return;
-    fetch("http://localhost:8080/address", {
+    fetch("https://bookcircleapi.onrender.com/address", {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -39,7 +39,7 @@ function Addinfo() {
   // Save or update address
   const handleSave = () => {
     if (!token) return;
-    fetch("http://localhost:8080/address", {
+    fetch("https://bookcircleapi.onrender.com/address", {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,

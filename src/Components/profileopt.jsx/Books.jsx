@@ -22,7 +22,7 @@ function Books() {
     const [books, setBooks] = useState([])
 
     // API Base URL - adjust according to your backend
-    const API_BASE_URL = 'http://localhost:8080'
+    const API_BASE_URL = 'https://bookcircleapi.onrender.com'
 
     // Get JWT token from localStorage
     const getAuthToken = () => {

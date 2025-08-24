@@ -20,7 +20,7 @@ function Profileopt() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:8080/profile", {
+        const res = await fetch("https://bookcircleapi.onrender.com/profile", {
           headers: {
             "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -67,7 +67,7 @@ function Profileopt() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8080/profile/upload-picture", {
+      const res = await fetch("https://bookcircleapi.onrender.com/profile/upload-picture", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -88,7 +88,7 @@ function Profileopt() {
 
   const handleSave = async () => {
     try {
-      const res = await fetch("http://localhost:8080/profile", {
+      const res = await fetch("https://bookcircleapi.onrender.com/profile", {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -117,8 +117,6 @@ function Profileopt() {
       alert("Error updating profile");
     }
   };
-
-  if (loading) return <p className="text-gray-500">Loading profile...</p>;
 
   return (
     <div id='profile' className='flex h-max pt-14 justify-between items-center w-10/12 md:w-9/12'>
