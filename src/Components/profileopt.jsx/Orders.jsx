@@ -123,7 +123,7 @@ function Orders() {
                     <td className='w-6/12 h-full py-1'>
                         <div className='flex grid3:contents flex-col w-full h-full items-center justify-between'>
                             <div className='min-w-44 truncate'>My first doctor visit
-                                <div className='text-sm font-light'>by Tanmay Gangude</div>
+                                <div className='text-sm font-light'>by Rashmi Jha</div>
                             </div>
                             <div className='flex w-full grid3:hidden justify-between'>
                                 <div>510rs</div>

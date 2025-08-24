@@ -1,4 +1,4 @@
-import { Children, StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { Categoryprovider } from './Components/Context/Category.jsx';
@@ -10,7 +10,11 @@ import Cart from './Components/Cart.jsx';
 import Login from './Components/Login.jsx';
 import Navbar from './Components/Navbar.jsx';
 import Profile from './Components/Profile.jsx';
-import BookDetail from './Components/BookDetail'; // Import the BookDetail component
+import BookDetail from './Components/BookDetail';
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from './Components/Context/AuthContext.jsx';
+import ProtectedRoute from "./Components/ProtectedRoute";
+
 
 const router = createBrowserRouter([
   {
@@ -43,19 +47,22 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: (
+          <ProtectedRoute>
           <>
             <Navbar />
             <Profile />
           </>
+          </ProtectedRoute>
         ),
       },
       {
         path: 'book/:id',
-        element: 
-        <>
-        <Navbar />
-        <BookDetail />,
-      </>
+        element: (
+          <>
+            <Navbar />
+            <BookDetail />
+          </>
+        ),
       },
     ],
   },
@@ -64,7 +71,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Categoryprovider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <Toaster position="top-right" />
+      </AuthProvider>
     </Categoryprovider>
   </StrictMode>
 );
