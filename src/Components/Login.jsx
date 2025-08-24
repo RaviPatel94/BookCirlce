@@ -74,9 +74,6 @@ function Login() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen w-screen gap-9 z-[1000] sm:flex-row py-20">
-      <div className="absolute px-3 py-1 bg-gray-300 right-3 top-3 border-l-4 border-black">
-        !Working on authentication system
-      </div>
       <div className="bg-gray-300 h-96 w-80 rounded-xl flex flex-col items-center justify-center">
         <h1 className="text-3xl font-Playfair pb-2">BookCircle</h1>
         <h2 className="w-44 text-center text-sm pb-7">
