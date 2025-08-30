@@ -1,6 +1,7 @@
 import { Trash2 } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 function Books() {
     const [editing, setEditing] = useState(false)
@@ -21,7 +22,6 @@ function Books() {
     })
     const [books, setBooks] = useState([])
 
-    // API Base URL - adjust according to your backend
     const API_BASE_URL = 'https://bookcircleapi.onrender.com'
 
     // Get JWT token from localStorage
@@ -53,7 +53,7 @@ function Books() {
             const response = await apiClient.get('/your-books')
             setBooks(response.data)
         } catch (error) {
-            console.error('Error fetching books:', error)
+            toast.error('Error fetching books:', error)
         } finally {
             setLoading(false)
         }
@@ -74,23 +74,21 @@ function Books() {
         if (file) {
             // Validate file
             if (!file.type.startsWith('image/')) {
-                alert('Please select a valid image file')
+                toast.error('Please select a valid image file')
                 return
             }
 
             if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                alert('File size should be less than 5MB')
+                toast.error('File size should be less than 5MB')
                 return
             }
 
             try {
                 setUploadingImage(true)
                 
-                // Create FormData for file upload
                 const formData = new FormData()
                 formData.append('file', file)
 
-                // Upload to API
                 const response = await apiClient.post('/your-books/upload-cover', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -101,8 +99,7 @@ function Books() {
                 setImage(imageUrl)
                 setFormData(prev => ({...prev, coverImageUrl: imageUrl}))
             } catch (error) {
-                console.error('Error uploading image:', error)
-                alert('Failed to upload image. Please try again.')
+                toast.error('Failed to upload image. Please try again.')
             } finally {
                 setUploadingImage(false)
             }
@@ -119,24 +116,23 @@ function Books() {
         
         // Validation
         if (!formData.title || !formData.author || !formData.price || !formData.quantity) {
-            alert('Please fill in all required fields')
+            toast.error('Please fill in all required fields')
             return
         }
 
         if (parseFloat(formData.price) <= 0) {
-            alert('Price must be greater than 0')
+            toast.error('Price must be greater than 0')
             return
         }
 
         if (parseInt(formData.quantity) <= 0) {
-            alert('Quantity must be greater than 0')
+            toast.error('Quantity must be greater than 0')
             return
         }
 
         try {
             setSubmitting(true)
 
-            // Prepare request data
             const requestData = {
                 title: formData.title.trim(),
                 author: formData.author.trim(),
@@ -151,7 +147,6 @@ function Books() {
             // Send to API
             const response = await apiClient.post('/your-books', requestData)
             
-            // Add new book to state
             setBooks(prev => [response.data, ...prev])
             
             // Reset form
@@ -167,13 +162,13 @@ function Books() {
             })
             setImage('/images/bookcover.png')
             
-            alert('Book added successfully!')
+            toast.success('Book added successfully!')
         } catch (error) {
-            console.error('Error adding book:', error)
+            toast.error('Error adding book:', error)
             if (error.response?.status === 400) {
-                alert('Please check all required fields and try again.')
+                toast.error('Please check all required fields and try again.')
             } else {
-                alert('Failed to add book. Please try again.')
+                toast.error('Failed to add book. Please try again.')
             }
         } finally {
             setSubmitting(false)
@@ -188,10 +183,10 @@ function Books() {
         try {
             await apiClient.delete(`/your-books/${id}`)
             setBooks(prev => prev.filter(book => book.id !== id))
-            alert('Book deleted successfully!')
+            toast.success('Book deleted successfully!')
         } catch (error) {
             console.error('Error deleting book:', error)
-            alert('Failed to delete book. Please try again.')
+            toast.error('Failed to delete book. Please try again.')
         }
     }
 

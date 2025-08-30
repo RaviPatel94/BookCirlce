@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function Profileopt() {
   const [edit, setEdit] = useState(false);
@@ -98,14 +99,14 @@ function Profileopt() {
           fullName,
           phoneNumber,
           dateOfBirth,
-          profilePic, // already a Cloudinary URL after upload
+          profilePic,
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to update profile");
+      if (!res.ok) toast.error("Failed to update profile");
 
       const updated = await res.json();
-      alert("Profile updated successfully!");
+      toast.success("Profile updated successfully!");
       setEdit(false);
 
       setFullName(updated.fullName || "");
@@ -114,7 +115,7 @@ function Profileopt() {
       setProfilePic(updated.profilePic || "/images/pfp.jpg"); // Fixed: consistent naming
     } catch (err) {
       console.error("Error updating profile:", err);
-      alert("Error updating profile");
+      toast.error("Error updating profile");
     }
   };
 

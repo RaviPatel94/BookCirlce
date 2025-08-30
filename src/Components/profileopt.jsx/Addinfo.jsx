@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 function Addinfo() {
   const [edit, setEdit] = useState(false);
@@ -10,7 +11,6 @@ function Addinfo() {
 
   const token = localStorage.getItem("token");
 
-  // Fetch existing address when component loads
   useEffect(() => {
     if (!token) return;
     fetch("https://bookcircleapi.onrender.com/address", {
@@ -21,7 +21,7 @@ function Addinfo() {
       },
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch address");
+        if (!res.ok) toast.error("Failed to fetch address");
         return res.json();
       })
       .then((data) => {
@@ -54,7 +54,8 @@ function Addinfo() {
       }),
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to save address");
+        if (!res.ok) toast.error("Failed to save address");
+        else toast.success("updated data sucessfully")
         return res.json();
       })
       .then((data) => {
@@ -63,7 +64,7 @@ function Addinfo() {
         setCity(data.city || "");
         setPostal(data.postalCode || "");
         setCountry(data.country || "");
-        setEdit(false); // Exit edit mode after saving
+        setEdit(false); 
       })
       .catch((err) => console.error(err));
   };

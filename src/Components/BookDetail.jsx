@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react"
 import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
+import toast from "react-hot-toast";
 import {
   FiBook,
   FiCalendar,
@@ -23,10 +24,13 @@ const BookDetail = () => {
   const [recommendations, setRecommendations] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [addingToCart, setAddingToCart] = useState(false)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const [showRightArrow, setShowRightArrow] = useState(false)
 
   const recommendationsRef = useRef(null)
+
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -35,18 +39,15 @@ const BookDetail = () => {
         const res = await axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`)
         setBook(res.data.volumeInfo)
 
-        // Fetch recommendations based on categories/genre if available
         if (res.data.volumeInfo.categories && res.data.volumeInfo.categories.length > 0) {
           const category = res.data.volumeInfo.categories[0]
           const recommendationsRes = await axios.get(
             `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&maxResults=40`,
           )
 
-          // Filter out the current book from recommendations
           const filteredRecommendations = recommendationsRes.data.items.filter((item) => item.id !== id)
           setRecommendations(filteredRecommendations)
 
-          // Check if we need to show the right arrow initially
           setTimeout(() => {
             checkArrowVisibility()
           }, 500)
@@ -61,7 +62,6 @@ const BookDetail = () => {
 
     fetchBook()
 
-    // Add scroll event listener to the recommendations container
     const checkScroll = () => {
       checkArrowVisibility()
     }
@@ -107,10 +107,51 @@ const BookDetail = () => {
     return { __html: htmlContent }
   }
 
-  // Function to add to cart
+  // Function to add to cart using simple fetch like your Addinfo component
   const addToCart = () => {
-    // Implement your cart logic here
-    alert(`${book.title} added to cart!`)
+    if (!book) return
+    if (!token) {
+      toast.error("Please login to add items to cart")
+      navigate('/login')
+      return
+    }
+
+    setAddingToCart(true)
+    
+    // Generate random price for book
+    const randomPrice = Math.floor(Math.random() * (999 - 199 + 1)) + 199
+
+    const cartItem = {
+      bookId: id,
+      title: book.title,
+      author: book.authors?.join(", ") || "Unknown Author",
+      imageUrl: book.imageLinks?.thumbnail?.replace("http:", "https:") || "",
+      price: randomPrice,
+      quantity: 1
+    }
+
+    fetch("https://bookcircleapi.onrender.com/cart/add", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItem),
+    })
+      .then((res) => {
+        if (!res.ok) toast.error("Failed to add to cart");
+        return res.json();
+      })
+      .then((data) => {
+        toast.success(`${book.title} added to cart successfully!`)
+      })
+      .catch((err) => {
+        console.error(err)
+        toast.success("Failed to add item to cart. Please try again.")
+      })
+      .finally(() => {
+        setAddingToCart(false)
+      })
   }
 
   // Function to handle category selection
@@ -236,11 +277,14 @@ const BookDetail = () => {
                 <div className="mt-auto">
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
                     <button
-                      className=" border border-gray-300 hover:bg-green-200 active:bg-green-500 text-black py-2 px-6 rounded-lg flex items-center justify-center"
+                      className={`border border-gray-300 hover:bg-green-200 active:bg-green-500 text-black py-2 px-6 rounded-lg flex items-center justify-center ${
+                        addingToCart ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
                       onClick={addToCart}
+                      disabled={addingToCart}
                     >
                       <FiShoppingCart className="mr-2" />
-                      Add to Cart
+                      {addingToCart ? 'Adding...' : 'Add to Cart'}
                     </button>
                     <button className=" hover:bg-red-200 active:bg-red-500 py-2 px-6 rounded-lg flex items-center justify-center">
                       <FiHeart className="mr-2" />
@@ -342,4 +386,3 @@ const BookDetail = () => {
 }
 
 export default BookDetail
-
