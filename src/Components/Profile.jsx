@@ -48,9 +48,6 @@ function Profile() {
           <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("help")}
           ><CircleHelp className=' size-5 lg:size-6'/>Help?</li>
-          <li className='sideopt border flex gap-2 pl-2'
-          onClick={()=>setinview("signout")}
-          ><LogOut className=' size-5 lg:size-6'/>Sign Out</li>
         </ul>
         <div className='w-full h-full overflow-y-scroll pb-10 flex flex-col items-center gap-20'>
           <Profileopt/>

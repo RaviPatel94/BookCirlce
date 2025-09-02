@@ -35,6 +35,18 @@ function Navbar() {
   const dropdownRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, [location.pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
 
   const searchbook = (evt) => {
     if (evt.key === "Enter") {
@@ -59,10 +71,8 @@ function Navbar() {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide categories
         setShowCategories(false);
       } else {
-        // Scrolling up - show categories
         setShowCategories(true);
       }
       
@@ -127,15 +137,24 @@ function Navbar() {
               className={`w-48 absolute bg-white right-0 top-[38px] shadow-sm shadow-gray-700 rounded-md text-black py-1 text-lg ${navopt ? "" : "hidden"}`}
             >
               <ul>
-                <NavLink to="/login">
-                  <li className="border-gray-500 py-2 hover:bg-gray-200 px-2">Login</li>
-                </NavLink>
+                {!isLoggedIn && (
+                  <NavLink to="/login">
+                    <li className="border-gray-500 py-2 hover:bg-gray-200 px-2">Login</li>
+                  </NavLink>
+                )}
                 <NavLink to="/profile">
                   <li className="border-gray-500 py-2 hover:bg-gray-200 px-2">Profile</li>
                 </NavLink>
                 <li className="py-2 hover:bg-gray-200 border-gray-500 px-2">Contact</li>
                 <li className="py-2 hover:bg-gray-200 border-gray-500 px-2">Settings</li>
-                <li className="py-2 hover:bg-gray-200 px-2">Signout</li>
+                {isLoggedIn && (
+                  <li
+                    className="py-2 hover:bg-gray-200 px-2 cursor-pointer"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </li>
+                )}
               </ul>
             </div>
           </div>
