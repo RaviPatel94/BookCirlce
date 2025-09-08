@@ -9,7 +9,7 @@ function Profileopt() {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [profilePic, setProfilePic] = useState("/images/pfp.jpg"); // Fixed: consistent naming
+  const [profilePic, setProfilePic] = useState("/images/pfp.jpg"); 
 
   // Read-only info
   const [username, setUsername] = useState("");
@@ -33,13 +33,10 @@ function Profileopt() {
         const data = await res.json();
         console.log("Profile data:", data); // Debug log
 
-        // Editable
         setFullName(data.fullName || "");
         setPhoneNumber(data.phoneNumber || "");
         setDateOfBirth(data.dateOfBirth || "");
         setProfilePic(data.profilePic || "/images/pfp.jpg"); // Fixed: consistent naming
-
-        // Read-only
         setUsername(data.username || "");
         setEmail(data.email || "");
       } catch (err) {
@@ -56,13 +53,11 @@ function Profileopt() {
     }
   }, [token]);
 
-  // Handle profile pic change -> upload to backend -> Cloudinary
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Optional: show local preview *instantly*
-    setProfilePic(URL.createObjectURL(file)); // Fixed: consistent naming
+    setProfilePic(URL.createObjectURL(file)); 
 
     const formData = new FormData();
     formData.append("file", file);

@@ -9,6 +9,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,14 +18,13 @@ function Login() {
     setFormData({ username: "", email: "", password: "" });
   };
 
-  // handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Signup
   const handleSignup = async (e) => {
     e.preventDefault();
+    setSubmitting(true)
     try {
       const res = await fetch("https://bookcircleapi.onrender.com/auth/signup", {
         method: "POST",
@@ -33,19 +33,22 @@ function Login() {
       });
 
       if (res.ok) {
-        toast.success("Signup successful 🎉");
-        switchsign(); // go back to SignIn form
+        toast.success("Signup successful");
+        setSubmitting(false)
+        switchsign(); 
       } else {
-        toast.error("Signup failed ❌");
+        setSubmitting(false)
+        toast.error("Signup failed");
       }
     } catch (err) {
+        setSubmitting(false)
       toast.error("Something went wrong!");
     }
   };
 
-  // Signin
   const handleSignin = async (e) => {
     e.preventDefault();
+    setSubmitting(true)
     try {
       const res = await fetch("https://bookcircleapi.onrender.com/auth/signin", {
         method: "POST",
@@ -58,16 +61,19 @@ function Login() {
       const data = await res.json();
 
       if (res.ok && data.token) {
-        toast.success("Welcome back! 🎉");
+        setSubmitting(false)
+        toast.success("Welcome back!");
 
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify({ email: formData.email }));
+        localStorage.setItem("user", JSON.stringify(formData.email ));
 
         navigate("/");
       } else {
-        toast.error("Invalid credentials ❌");
+        setSubmitting(false)
+        toast.error("Invalid credentials");
       }
     } catch (err) {
+      setSubmitting(false)
       toast.error("Something went wrong!");
     }
   };
@@ -125,10 +131,11 @@ function Login() {
           </div>
           <div className="w-full flex justify-center">
             <button
+              disabled = {submitting}
               type="submit"
-              className="mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white"
+              className={`mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white ${submitting ? "opacity-50 cursor-not-allowed" : ""}`}
             >
-              Submit
+              {submitting ? "Submitting" : "Submit"}
             </button>
           </div>
           <div className="flex justify-between w-full text-sm">
@@ -142,7 +149,6 @@ function Login() {
           </div>
         </form>
 
-        {/* Signup Form */}
         <form
           onSubmit={handleSignup}
           className={` flex-col items-start justify-around h-full px-3 ${
@@ -184,18 +190,13 @@ function Login() {
             />
           </div>
           <div className="w-full flex justify-between">
-            <button
-              type="button"
-              onClick={switchsign}
-              className="mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white"
-            >
-              Cancel
-            </button>
+
             <button
               type="submit"
-              className="mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white"
+              disabled = {submitting}
+              className={`mx-auto border-black px-3 py-1 rounded-md border hover:bg-black hover:text-white ${submitting ? "opacity-50 cursor-not-allowed" : ""}`}
             >
-              Submit
+              {submitting ? "Submitting" : "Submit"}
             </button>
           </div>
         </form>

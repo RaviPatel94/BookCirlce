@@ -6,6 +6,7 @@ import Books from './profileopt.jsx/Books'
 import Payment from './profileopt.jsx/Payment'
 import Rewards from './profileopt.jsx/Rewards'
 import Help from './profileopt.jsx/Help'
+import Contact from './profileopt.jsx/Contact'
 import { User,House,FileClock,BookCopy,CreditCard,Gift,CircleHelp, Settings, LogOut, Mail, ShoppingCart } from 'lucide-react';
 
 function Profile() {
@@ -47,7 +48,10 @@ function Profile() {
           ><Gift className=' size-5 lg:size-6'/>Rewards</li>
           <li className='sideopt flex gap-2 pl-2'
           onClick={()=>setinview("help")}
-          ><CircleHelp className=' size-5 lg:size-6'/>Help?</li>
+          ><CircleHelp className=' size-5 lg:size-6'/>FYQ</li>
+          <li className='sideopt flex gap-2 pl-2'
+          onClick={()=>setinview("contact")}
+          ><CircleHelp className=' size-5 lg:size-6'/>Contact</li>
         </ul>
         <div className='w-full h-full overflow-y-scroll pb-10 flex flex-col items-center gap-20'>
           <Profileopt/>
@@ -57,6 +61,7 @@ function Profile() {
           <Payment/>
           <Rewards/>
           <Help/>
+          <Contact/>
         </div>
     </main>
   )
