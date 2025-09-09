@@ -11,10 +11,10 @@ import Login from './Components/Login.jsx';
 import Navbar from './Components/Navbar.jsx';
 import Profile from './Components/Profile.jsx';
 import BookDetail from './Components/BookDetail';
+import Chatbot from './Components/Chatbot.jsx'; // Import chatbot
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from './Components/Context/AuthContext.jsx';
 import ProtectedRoute from "./Components/ProtectedRoute";
-
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
             <Navbar />
             <Hero />
             <Menu />
+            <Chatbot /> 
           </>
         ),
       },
@@ -37,21 +38,23 @@ const router = createBrowserRouter([
           <>
             <Navbar />
             <Cart />
+            <Chatbot />
           </>
         ),
       },
       {
         path: 'login',
-        element: <Login />,
+        element: <Login />, 
       },
       {
         path: 'profile',
         element: (
           <ProtectedRoute>
-          <>
-            <Navbar />
-            <Profile />
-          </>
+            <>
+              <Navbar />
+              <Profile />
+              <Chatbot /> 
+            </>
           </ProtectedRoute>
         ),
       },
@@ -61,6 +64,7 @@ const router = createBrowserRouter([
           <>
             <Navbar />
             <BookDetail />
+            <Chatbot />
           </>
         ),
       },
