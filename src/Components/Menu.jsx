@@ -10,7 +10,7 @@ const Menu = () => {
   const [indexCount, setIndexCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Use the useNavigate hook
+  const navigate = useNavigate(); 
 
   const getMainBooks = async () => {
     try {
@@ -85,6 +85,7 @@ const Menu = () => {
                   <img
                     src={thumbnail}
                     alt={`Cover of ${item.volumeInfo.title}`}
+                    loading='lazy'
                     className="w-full h-full object-fill"
                   />
                 </div>
