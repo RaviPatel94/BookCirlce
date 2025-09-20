@@ -26,16 +26,52 @@ function Navbar() {
     "Historical Fiction",
     "Cookbooks",
   ]
-  const { setcategory } = useCategory()
+  const { setcategory, category } = useCategory()
   const [search, setsearch] = useState(" ")
   const [allowsearch, setallowsearch] = useState(false)
   const [navopt, setnavopt] = useState(false)
   const [showCategories, setShowCategories] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [shouldScrollToMenu, setShouldScrollToMenu] = useState(false)
   const dropdownRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // Effect to handle scrolling when category changes and we're on home page
+  useEffect(() => {
+    if (shouldScrollToMenu && location.pathname === "/") {
+      // Wait longer for the page to fully render
+      const timer = setTimeout(() => {
+        scrollToMenuWithRetry()
+        setShouldScrollToMenu(false)
+      }, 500)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [location.pathname, shouldScrollToMenu])
+
+  // Function to scroll with retry mechanism
+  const scrollToMenuWithRetry = (attempts = 0) => {
+    const maxAttempts = 10
+    const menuElement = document.getElementById('menu')
+    
+    if (menuElement) {
+      menuElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    } else if (attempts < maxAttempts) {
+      // Retry after a short delay if element not found
+      setTimeout(() => scrollToMenuWithRetry(attempts + 1), 100)
+    } else {
+      // Fallback: scroll to approximate position
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -47,21 +83,49 @@ function Navbar() {
     setIsLoggedIn(false);
   };
 
+  // Function to scroll to menu section
+  const scrollToMenu = () => {
+    const menuElement = document.getElementById('menu')
+    
+    if (menuElement) {
+      menuElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    } else {
+      // Fallback: scroll to approximate position (100vh for hero section)
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   const searchbook = (evt) => {
     if (evt.key === "Enter") {
       setcategory(search)
-      // If not on menu page, navigate to menu page
+      
       if (location.pathname !== "/") {
+        // Navigate to home page and set flag to scroll
+        setShouldScrollToMenu(true)
         navigate("/")
+      } else {
+        // Already on home page, scroll with retry
+        setTimeout(() => scrollToMenuWithRetry(), 200)
       }
     }
   }
 
   const handleCategoryClick = (category) => {
     setcategory(category)
+    
     if (location.pathname !== "/") {
+      // Navigate to home page and set flag to scroll
+      setShouldScrollToMenu(true)
       navigate("/")
+    } else {
+      // Already on home page, scroll with retry
+      setTimeout(() => scrollToMenuWithRetry(), 200)
     }
   }
 
