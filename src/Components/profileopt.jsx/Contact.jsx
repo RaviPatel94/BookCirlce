@@ -73,11 +73,6 @@ function Contact() {
           <h2 className="text-xl mb-4">Get in Touch</h2>
           <p className="mb-2"><strong>Email:</strong> bookcircle@gmail.com</p>
           <p><strong>Phone:</strong> +91 888888888</p>
-          {userEmail && (
-            <p className="mt-4 text-sm text-gray-600">
-              <strong>Sending from:</strong> {userEmail}
-            </p>
-          )}
         </div>
 
         <div>

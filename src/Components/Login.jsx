@@ -22,29 +22,31 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    setSubmitting(true)
-    try {
-      const res = await fetch("https://bookcircleapi.onrender.com/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+const handleSignup = async (e) => {
+  e.preventDefault();
+  setSubmitting(true);
+  try {
+    const res = await fetch("https://bookcircleapi.onrender.com/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      if (res.ok) {
-        toast.success("Signup successful");
-        setSubmitting(false)
-        switchsign(); 
-      } else {
-        setSubmitting(false)
-        toast.error("Signup failed");
-      }
-    } catch (err) {
-        setSubmitting(false)
-      toast.error("Something went wrong!");
+    if (res.ok) {
+      toast.success("Signup successful");
+      setSubmitting(false);
+      switchsign();
+    } else {
+      const errorText = await res.text();
+      toast.error(errorText || "Signup failed");
+      setSubmitting(false);
     }
-  };
+  } catch (err) {
+    setSubmitting(false);
+    toast.error("Something went wrong!");
+  }
+};
+
 
   const handleSignin = async (e) => {
     e.preventDefault();
