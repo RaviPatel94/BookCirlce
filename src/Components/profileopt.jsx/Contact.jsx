@@ -8,7 +8,7 @@ function Contact() {
   const [submitStatus, setSubmitStatus] = useState('');
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem('user');
+    const storedEmail = localStorage.getItem('email');
     if (storedEmail) {
       setUserEmail(storedEmail);
     }

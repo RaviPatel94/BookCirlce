@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { Categoryprovider } from './Components/Context/Category.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../Layout.jsx';
 import Hero from './Components/Hero';
@@ -13,8 +12,9 @@ import Profile from './Components/Profile.jsx';
 import BookDetail from './Components/BookDetail';
 import Chatbot from './Components/Chatbot.jsx'; // Import chatbot
 import { Toaster } from "react-hot-toast";
-import { AuthProvider } from './Components/Context/AuthContext.jsx';
-import ProtectedRoute from "./Components/ProtectedRoute";
+import { Provider } from 'react-redux';
+import { store } from './store/store.js';
+
 
 const router = createBrowserRouter([
   {
@@ -49,13 +49,11 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: (
-          <ProtectedRoute>
             <>
               <Navbar />
               <Profile />
               <Chatbot /> 
             </>
-          </ProtectedRoute>
         ),
       },
       {
@@ -74,11 +72,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Categoryprovider>
-      <AuthProvider>
+    <Provider store={store}>
         <RouterProvider router={router} />
         <Toaster position="top-right" />
-      </AuthProvider>
-    </Categoryprovider>
+    </Provider>
   </StrictMode>
 );

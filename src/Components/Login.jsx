@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { login } from "../store/authSlice";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [signin, setsignin] = useState(true);
@@ -10,6 +12,7 @@ function Login() {
     password: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -67,7 +70,14 @@ const handleSignup = async (e) => {
         toast.success("Welcome back!");
 
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(formData.email ));
+        localStorage.setItem("email", JSON.stringify(formData.email ));
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        dispatch(login({
+          name : data.user,
+          email : formData.email,
+          token : data.token
+        }))
 
         navigate("/");
       } else {
@@ -77,6 +87,7 @@ const handleSignup = async (e) => {
     } catch (err) {
       setSubmitting(false)
       toast.error("Something went wrong!");
+      console.log(err)
     }
   };
 

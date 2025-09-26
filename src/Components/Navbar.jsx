@@ -1,9 +1,11 @@
 "use client"
-
 import { useEffect, useState, useRef } from "react"
-import { useCategory } from "./Context/Category"
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 import { Search } from "lucide-react"
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../store/categorySlice";
+import { logout } from "../store/authSlice";
 
 function Navbar() {
   const categories = [
@@ -26,7 +28,6 @@ function Navbar() {
     "Historical Fiction",
     "Cookbooks",
   ]
-  const { setcategory, category } = useCategory()
   const [search, setsearch] = useState(" ")
   const [allowsearch, setallowsearch] = useState(false)
   const [navopt, setnavopt] = useState(false)
@@ -36,12 +37,11 @@ function Navbar() {
   const dropdownRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(useSelector((state) => state.auth.isAuthenticated))
+   const dispatch = useDispatch();
 
-  // Effect to handle scrolling when category changes and we're on home page
   useEffect(() => {
     if (shouldScrollToMenu && location.pathname === "/") {
-      // Wait longer for the page to fully render
       const timer = setTimeout(() => {
         scrollToMenuWithRetry()
         setShouldScrollToMenu(false)
@@ -51,7 +51,6 @@ function Navbar() {
     }
   }, [location.pathname, shouldScrollToMenu])
 
-  // Function to scroll with retry mechanism
   const scrollToMenuWithRetry = (attempts = 0) => {
     const maxAttempts = 10
     const menuElement = document.getElementById('menu')
@@ -62,69 +61,50 @@ function Navbar() {
         block: 'start'
       })
     } else if (attempts < maxAttempts) {
-      // Retry after a short delay if element not found
       setTimeout(() => scrollToMenuWithRetry(attempts + 1), 100)
     } else {
-      // Fallback: scroll to approximate position
       window.scrollTo({
         top: window.innerHeight,
         behavior: 'smooth'
       })
     }
   }
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("email");
+    dispatch(
+      logout({
+        name : null,
+        token : null,
+        email: null
+      })
+    )
     setIsLoggedIn(false);
-  };
 
-  // Function to scroll to menu section
-  const scrollToMenu = () => {
-    const menuElement = document.getElementById('menu')
-    
-    if (menuElement) {
-      menuElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
-    } else {
-      // Fallback: scroll to approximate position (100vh for hero section)
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      })
-    }
-  }
+  };
 
   const searchbook = (evt) => {
     if (evt.key === "Enter") {
       setcategory(search)
       
       if (location.pathname !== "/") {
-        // Navigate to home page and set flag to scroll
         setShouldScrollToMenu(true)
         navigate("/")
       } else {
-        // Already on home page, scroll with retry
         setTimeout(() => scrollToMenuWithRetry(), 200)
       }
     }
   }
 
   const handleCategoryClick = (category) => {
-    setcategory(category)
+    dispatch(setCategory(category));
     
     if (location.pathname !== "/") {
-      // Navigate to home page and set flag to scroll
       setShouldScrollToMenu(true)
       navigate("/")
     } else {
-      // Already on home page, scroll with retry
       setTimeout(() => scrollToMenuWithRetry(), 200)
     }
   }
@@ -206,8 +186,8 @@ function Navbar() {
                     <li className="border-gray-500 py-2 hover:bg-gray-200 px-2">Login</li>
                   </NavLink>
                 )}
-                <NavLink to="/profile">
-                  <li className="border-gray-500 py-2 hover:bg-gray-200 px-2">Profile</li>
+                <NavLink to={isLoggedIn? "/profile" :"/login"}>
+                  <li  className="border-gray-500 py-2 hover:bg-gray-200 px-2">Profile</li>
                 </NavLink>
                 <li className="py-2 hover:bg-gray-200 border-gray-500 px-2">Contact</li>
                 <li className="py-2 hover:bg-gray-200 border-gray-500 px-2">Settings</li>

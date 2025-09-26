@@ -14,7 +14,6 @@ import {
   FiChevronLeft,
   FiChevronRight,
 } from "react-icons/fi"
-import { useCategory } from "./Context/Category"
 
 const BookDetail = () => {
   const { id } = useParams()

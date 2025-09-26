@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useCategory } from './Context/Category';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
   const apiKey = import.meta.env.VITE_BOOK;
-  const { category } = useCategory();
+  const { category } = useSelector((state) => state.category);
   const [data, setData] = useState([]);
   const [indexCount, setIndexCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
