@@ -87,7 +87,7 @@ function Navbar() {
 
   const searchbook = (evt) => {
     if (evt.key === "Enter") {
-      setcategory(search)
+      dispatch(setCategory(search));
       
       if (location.pathname !== "/") {
         setShouldScrollToMenu(true)

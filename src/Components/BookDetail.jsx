@@ -18,7 +18,6 @@ import {
 const BookDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { setcategory } = useCategory()
   const [book, setBook] = useState(null)
   const [recommendations, setRecommendations] = useState([])
   const [loading, setLoading] = useState(true)
@@ -153,11 +152,6 @@ const BookDetail = () => {
       })
   }
 
-  // Function to handle category selection
-  const handleCategoryClick = (category) => {
-    setcategory(category)
-    navigate("/") // Navigate to menu page
-  }
 
   if (error) {
     return (
